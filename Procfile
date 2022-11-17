@@ -1,3 +1,3 @@
-web: python manage.py migrate && gunicorn <freela-edesio>.wsgi
+web: python manage.py migrate && gunicorn <api>.wsgi
 
 
