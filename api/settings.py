@@ -1,8 +1,9 @@
-
+import dotenv
+import dj_database_url
 
 from pathlib import Path
 import os
-import dotenv
+
 
 dotenv.load_dotenv()
 
@@ -10,9 +11,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 INSTALLED_APPS = [
@@ -61,14 +66,14 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 
 DATABASES = {
-  "default": {
+  "default": dj_database_url.config({
       "ENGINE": "django.db.backends.postgresql",
       "NAME": os.getenv("DB_NAME"),
       "USER": os.getenv("DB_USER"),
       "PASSWORD": os.getenv("DB_PASSWORD"),
       "HOST": "127.0.0.1",
       "PORT": 5432,
-  }
+  })
 }
 
 
