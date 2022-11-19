@@ -11,8 +11,13 @@ class UserView(CreateAPIView,ListAPIView):
 
 class LoginView(APIView):
     def post(self,request):
-        user = User.objects.filter(username=request.data['username'])[0]
-        return Response({'is_superuser':user.is_superuser,'id':user.id},status.HTTP_200_OK)
+        
+        try:
+            user = User.objects.filter(username=request.data['username'])[0]
+            return Response({'username':user.username,'email':user.email,'tel':user.tel,'status':user.status,'is_superuser':user.is_superuser,'id':user.id},status.HTTP_200_OK)
+        except:
+            return Response({'message':'User ou senha inválidos'},status.HTTP_400_BAD_REQUEST)
+        
 
 class DeletePatchGetIdView(DestroyAPIView,UpdateAPIView):
     queryset = User.objects.all()
