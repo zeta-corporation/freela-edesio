@@ -28,10 +28,12 @@ class DeletePatchGetIdView(DestroyAPIView,UpdateAPIView):
     def get(self,request,pk):
         user = User.objects.filter(id=pk)[0]
         dict_returned = {
+            'id':user.id,
             'username':user.username,
             'email':user.email,
-            'telefone':user.tel,
-            'status':user.status
+            'tel':user.tel,
+            'status':user.status,
+            
         }
 
 
