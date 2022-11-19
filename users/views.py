@@ -14,7 +14,9 @@ class LoginView(APIView):
         
         try:
             user = User.objects.filter(username=request.data['username'])[0]
-            return Response({'username':user.username,'email':user.email,'tel':user.tel,'status':user.status,'is_superuser':user.is_superuser,'id':user.id},status.HTTP_200_OK)
+            if user.check_password(request.data['password']):
+                return Response({'username':user.username,'email':user.email,'tel':user.tel,'status':user.status,'is_superuser':user.is_superuser,'id':user.id},status.HTTP_200_OK)
+            return Response({'message':'User ou senha inválidos'},status.HTTP_400_BAD_REQUEST)
         except:
             return Response({'message':'User ou senha inválidos'},status.HTTP_400_BAD_REQUEST)
         
