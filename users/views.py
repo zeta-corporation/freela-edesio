@@ -29,6 +29,7 @@ class DeletePatchGetIdView(DestroyAPIView,UpdateAPIView):
         user = User.objects.filter(id=pk)[0]
         dict_returned = {
             'id':user.id,
+            'is_superuser':user.is_superuser,
             'username':user.username,
             'email':user.email,
             'tel':user.tel,
