@@ -37,6 +37,7 @@ export const FormCadastroStyled = styled.form`
         border-radius: 8px;
         font: 600 16px/18px 'Roboto';
         margin: 10px 0 0;
+        cursor: pointer;
 
         @media (min-width: 768px) {
             height: 40px;

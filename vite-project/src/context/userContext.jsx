@@ -2,12 +2,15 @@ import { createContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 export const UserContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const [usersList, setUsersList] = useState([]);
+    const [image, setImage] = useState('');
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         async function loadUser() {
@@ -43,7 +46,7 @@ export const ContextProvider = ({ children }) => {
             // }
         }
         loadUser();
-    }, []);
+    }, [reload]);
 
     const createUser = (data) => {
         if (data.password === data.confirmPassword) {
@@ -89,6 +92,31 @@ export const ContextProvider = ({ children }) => {
                 })
                 .catch(({ response: { data } }) => toast.error(data.message));
         }
+        setReload(!reload);
+    };
+
+    const uploadImage = async () => {
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('upload_preset', 'lfw1muot');
+
+        let response;
+
+        await Axios.post(
+            'https://api.cloudinary.com/v1_1/dfqwjjm1u/image/upload',
+            formData,
+        )
+            .then((res) => {
+                response = res;
+                toast.success('Comprovante enviado!');
+            })
+            .catch((err) => toast.error());
+
+        await api.patch(`users/${user.id}/pay/`, {
+            image_url: response.data.url,
+        });
+        await api.patch(`users/${user.id}/`, { status: 'aguardando' });
+        setReload(!reload);
     };
 
     return (
@@ -101,6 +129,8 @@ export const ContextProvider = ({ children }) => {
                 navigate,
                 usersList,
                 changeStatus,
+                uploadImage,
+                setImage,
             }}
         >
             {children}

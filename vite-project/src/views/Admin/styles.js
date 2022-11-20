@@ -1,4 +1,46 @@
 import styled from 'styled-components';
+import { Image } from 'cloudinary-react';
+
+export const Modal = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modal-content {
+        background-color: #f5f5f5;
+        width: 500px;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 8px;
+        padding: 20px 10px;
+    }
+
+    button {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        border: none;
+        border-radius: 50%;
+        background-color: #e36d00;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+`;
+
+export const ImageComprovante = styled(Image)`
+    width: 100%;
+`;
 
 export const H1 = styled.h1`
     display: flex;
@@ -65,6 +107,7 @@ export const Row = styled.li`
     select {
         border: none;
         background-color: inherit;
+        cursor: pointer;
     }
 
     button {

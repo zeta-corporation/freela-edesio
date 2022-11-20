@@ -25,6 +25,13 @@ export const Container = styled.div`
         }
     }
 
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     button {
         padding: 6px 14px;
         background-color: #e36d00;
@@ -38,6 +45,36 @@ export const Container = styled.div`
         &:disabled {
             cursor: not-allowed;
         }
+    }
+
+    label {
+        padding: 6px 14px;
+        background-color: #e36d00;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font: 600 12px/14px 'Roboto';
+        cursor: pointer;
+    }
+
+    label + span {
+        font: 400 10px/14px 'Roboto';
+        color: #000;
+        margin: 4px 0;
+    }
+
+    label > span {
+        font-size: 18px;
+        display: inline-block;
+    }
+
+    input {
+        border: none;
+        font: 400 12px/14px 'Roboto';
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        width: 0px;
     }
 
     @media (min-width: 768px) {
@@ -57,10 +94,19 @@ export const Container = styled.div`
             }
         }
 
-        button {
+        button,
+        label {
             font-size: 24px;
             line-height: 28px;
             padding: 12px 20px;
+        }
+        label + span {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        label > span {
+            font-size: 25px;
         }
     }
 `;
@@ -77,6 +123,7 @@ export const Logout = styled.button`
     justify-content: center;
     gap: 10px;
     border-radius: 4px;
+    cursor: pointer;
 
     @media (min-width: 768px) {
         border-radius: 8px;

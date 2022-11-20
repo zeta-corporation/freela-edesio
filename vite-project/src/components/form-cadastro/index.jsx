@@ -24,11 +24,11 @@ const FormCadastro = () => {
                 required
             />
 
-            <label htmlFor="nickname">Nickname:</label>
+            <label htmlFor="nickname">Nickname no Free Fire:</label>
             <input
                 type="text"
                 id="nickname"
-                placeholder="Digite seu nickname"
+                placeholder="Digite seu nickname no jogo"
                 {...register('username')}
                 required
             />

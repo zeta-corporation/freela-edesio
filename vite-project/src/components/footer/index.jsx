@@ -9,9 +9,9 @@ const Footer = () => {
             </div>
             <div>
                 <a href="mailto:zetacorp@gmail.com">
-                    E-mail: zetacorp@gmail.com
+                    E-mail: zetacorp.dev@gmail.com
                 </a>
-                <a href="tel:81985194257">(81) 98519-4257</a>
+                <a href="tel:81983075243">(81) 98307-5243</a>
             </div>
         </FooterStyled>
     );

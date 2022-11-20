@@ -1,7 +1,5 @@
-import { H1, Container, Row } from './styles';
-import api from '../../services/api';
-import { useEffect, useState } from 'react';
-import { useContext } from 'react';
+import { H1, Container, Row, Modal, ImageComprovante } from './styles';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
 import { Logout } from '../Home/styles';
 import logoutImg from '../../assets/logout.png';
@@ -9,6 +7,9 @@ import downloadImg from '../../assets/download.png';
 
 const Admin = () => {
     const { user, usersList, logout, changeStatus } = useContext(UserContext);
+
+    const [imgUrl, setImgUrl] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
@@ -100,7 +101,13 @@ const Admin = () => {
                                     </option>
                                     <option value="confirmado">Pago</option>
                                 </select>
-                                <button>
+                                <button
+                                    onClick={() => {
+                                        setImgUrl(usr.image_url);
+                                        setShowModal(true);
+                                        console.log(usr.image_url);
+                                    }}
+                                >
                                     <img
                                         src={downloadImg}
                                         alt="download"
@@ -112,6 +119,17 @@ const Admin = () => {
                     </ul>
                 </div>
             </Container>
+            {showModal && (
+                <Modal>
+                    <div className="modal-content">
+                        <button onClick={() => setShowModal(false)}>X</button>
+                        <ImageComprovante
+                            cloudName="dfqwjjm1u"
+                            publicId={imgUrl}
+                        />
+                    </div>
+                </Modal>
+            )}
         </>
     );
 };
