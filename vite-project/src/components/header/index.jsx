@@ -1,14 +1,17 @@
 import { HeaderStyled } from './styles';
+import logo from '../../assets/logo@2x.png';
+import logolg from '../../assets/logo-lg.png';
+import logolg2 from '../../assets/logo-lg@2x.png';
 
 const Header = () => {
     return (
         <HeaderStyled>
             <picture>
                 <source
-                    srcSet="src/assets/logo-lg.png 1x, src/assets/logo-lg@2x.png 2x"
+                    srcSet={`${logolg} 1x, ${logolg2} 2x"`}
                     media="(min-width: 992px)"
                 />
-                <img src="src/assets/logo@2x.png" alt="Logo" width={285} />
+                <img src={logo} alt="Logo" width={285} />
             </picture>
         </HeaderStyled>
     );

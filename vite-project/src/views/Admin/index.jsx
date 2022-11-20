@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { Logout } from '../Home/styles';
+import logoutImg from '../../assets/logout.png';
+import downloadImg from '../../assets/download.png';
 
 const Admin = () => {
     const { user, usersList, logout, changeStatus } = useContext(UserContext);
@@ -13,7 +15,7 @@ const Admin = () => {
             <H1>
                 Painel Administrador
                 <Logout onClick={() => logout()}>
-                    <img src="src/assets/logout.png" alt="logout" width={15} />
+                    <img src={logoutImg} alt="logout" width={15} />
                     Sair
                 </Logout>
             </H1>
@@ -100,7 +102,7 @@ const Admin = () => {
                                 </select>
                                 <button>
                                     <img
-                                        src="src/assets/download.png"
+                                        src={downloadImg}
                                         alt="download"
                                         width={15}
                                     />

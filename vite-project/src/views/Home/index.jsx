@@ -1,6 +1,7 @@
 import { Container, Logout } from './styles';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/userContext';
+import logoutImg from '../../assets/logout.png';
 
 const Home = () => {
     const { user, logout } = useContext(UserContext);
@@ -18,7 +19,7 @@ const Home = () => {
                 </button>
             </Container>
             <Logout onClick={() => logout()}>
-                <img src="src/assets/logout.png" alt="logout" width={15} />
+                <img src={logoutImg} alt="logout" width={15} />
                 Sair
             </Logout>
         </>
