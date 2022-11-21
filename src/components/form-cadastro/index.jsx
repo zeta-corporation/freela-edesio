@@ -6,12 +6,7 @@ import { UserContext } from '../../context/userContext';
 const FormCadastro = () => {
     const { createUser } = useContext(UserContext);
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit } = useForm();
 
     return (
         <FormCadastroStyled onSubmit={handleSubmit(createUser)}>

@@ -39,7 +39,7 @@ export const Modal = styled.div`
 `;
 
 export const ImageComprovante = styled(Image)`
-    width: 100%;
+    height: 100%;
 `;
 
 export const H1 = styled.h1`

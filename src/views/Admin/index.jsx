@@ -6,7 +6,7 @@ import logoutImg from '../../assets/logout.png';
 import downloadImg from '../../assets/download.png';
 
 const Admin = () => {
-    const { user, usersList, logout, changeStatus } = useContext(UserContext);
+    const { usersList, logout, changeStatus } = useContext(UserContext);
 
     const [imgUrl, setImgUrl] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -27,7 +27,7 @@ const Admin = () => {
                         {usersList.map((usr) => (
                             <Row
                                 bg={
-                                    usr.status != 'confirmado'
+                                    usr.status !== 'confirmado'
                                         ? '#F5F5F5'
                                         : '#E36D00'
                                 }
@@ -44,7 +44,7 @@ const Admin = () => {
                         {usersList.map((usr) => (
                             <Row
                                 bg={
-                                    usr.status != 'confirmado'
+                                    usr.status !== 'confirmado'
                                         ? '#F5F5F5'
                                         : '#E36D00'
                                 }
@@ -61,7 +61,7 @@ const Admin = () => {
                         {usersList.map((usr) => (
                             <Row
                                 bg={
-                                    usr.status != 'confirmado'
+                                    usr.status !== 'confirmado'
                                         ? '#F5F5F5'
                                         : '#E36D00'
                                 }
@@ -78,12 +78,12 @@ const Admin = () => {
                         {usersList.map((usr) => (
                             <Row
                                 bg={
-                                    usr.status != 'confirmado'
+                                    usr.status !== 'confirmado'
                                         ? '#F5F5F5'
                                         : '#E36D00'
                                 }
                                 btn={
-                                    usr.status == 'n-pago'
+                                    usr.status === 'n-pago'
                                         ? 'none'
                                         : 'inline-block'
                                 }

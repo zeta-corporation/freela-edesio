@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { css } from 'styled-components';
 
 export const Container = styled.div`
     margin: 0 auto;
@@ -35,12 +36,30 @@ export const Container = styled.div`
     button {
         padding: 6px 14px;
         background-color: #e36d00;
+        cursor: pointer;
         border: none;
+        ${({ bglabel }) =>
+            !bglabel
+                ? css`
+                      background-color: #724720;
+                      cursor: not-allowed;
+                  `
+                : css`
+                      background-color: #07e612;
+                      border: 1px solid black;
+                  `}
+        ${({ txtlabel }) =>
+            !txtlabel
+                ? css`
+                      color: #858585;
+                  `
+                : css`
+                      color: #000;
+                  `}
         border-radius: 8px;
         margin: 0 auto;
         display: block;
         font: 600 12px/14px 'Roboto';
-        cursor: pointer;
 
         &:disabled {
             cursor: not-allowed;
@@ -49,12 +68,29 @@ export const Container = styled.div`
 
     label {
         padding: 6px 14px;
-        background-color: #e36d00;
+        /* background-color: #e36d00; */
         color: #000;
+        cursor: pointer;
+        ${({ bglabel }) =>
+            bglabel
+                ? css`
+                      background-color: #724720;
+                      cursor: not-allowed;
+                  `
+                : css`
+                      background-color: #e36d00;
+                  `}
+        ${({ txtlabel }) =>
+            txtlabel
+                ? css`
+                      color: #858585;
+                  `
+                : css`
+                      color: #000;
+                  `}
         border: none;
         border-radius: 8px;
         font: 600 12px/14px 'Roboto';
-        cursor: pointer;
     }
 
     label + span {

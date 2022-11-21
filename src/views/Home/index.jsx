@@ -1,14 +1,15 @@
 import { Container, Logout } from './styles';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import logoutImg from '../../assets/logout.png';
 
 const Home = () => {
-    const { user, logout, uploadImage, setImage } = useContext(UserContext);
+    const { user, logout, uploadImage, setImage, image } =
+        useContext(UserContext);
 
     return (
         <>
-            <Container>
+            <Container bglabel={true && image} txtlabel={true && image}>
                 <h1>INFORMAÇÕES DO JOGADOR</h1>
                 <p>Nickname: {user.username}</p>
                 <p>Email: {user.email}</p>
@@ -19,7 +20,7 @@ const Home = () => {
                         Inserir Comprovante <span>&#x21D1;</span>
                         <input
                             type="file"
-                            disabled={true && user.status != 'n-pago'}
+                            disabled={true && user.status !== 'n-pago'}
                             onChange={(event) =>
                                 setImage(event.target.files[0])
                             }
@@ -27,7 +28,15 @@ const Home = () => {
                     </label>
                     <span>*apenas imagens (.png, .jpg, etc)</span>
                     <button
-                        disabled={true && user.status != 'n-pago'}
+                        disabled={
+                            user.status !== 'n-pago'
+                                ? true
+                                : !image
+                                ? true
+                                : false
+                        }
+                        bglabel={true && !image}
+                        txtlabel={true && !image}
                         onClick={uploadImage}
                     >
                         Enviar

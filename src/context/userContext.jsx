@@ -19,33 +19,27 @@ export const ContextProvider = ({ children }) => {
                 try {
                     const { data } = await api.get(`users/${userId}`);
                     setUser(data);
+                    console.log(data);
+                    if (data.is_superuser) {
+                        let { data } = await api.get('users/');
+                        data = data.sort((usr) =>
+                            usr.status === 'n-pago'
+                                ? -2
+                                : usr.status === 'aguardando'
+                                ? -1
+                                : 1,
+                        );
+                        setUsersList(data);
+                    }
                 } catch (error) {
                     console.log(error);
                 }
             } else {
                 navigate('/', { replace: true });
             }
-            let { data } = await api.get('users/');
-            data = data.sort((usr) =>
-                usr.status == 'n-pago'
-                    ? -2
-                    : usr.status == 'aguardando'
-                    ? -1
-                    : 1,
-            );
-            setUsersList(data);
-            // if (user?.is_superuser) {
-            //     try {
-            //         const { data } = await api.get(`users/`);
-            //         setUsersList(data);
-            //     } catch (err) {
-            //         console.log(err);
-            //     }
-            // } else {
-            //     console.log('teste');
-            // }
         }
         loadUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reload]);
 
     const createUser = (data) => {
@@ -71,6 +65,7 @@ export const ContextProvider = ({ children }) => {
                 setUser(data);
                 toast.success('Logado com sucesso!');
                 if (data.is_superuser) {
+                    setReload(!reload);
                     navigate('/dashboard', { replace: true });
                 } else navigate('/home', { replace: true });
             })
@@ -131,6 +126,7 @@ export const ContextProvider = ({ children }) => {
                 changeStatus,
                 uploadImage,
                 setImage,
+                image,
             }}
         >
             {children}

@@ -6,12 +6,7 @@ import { UserContext } from '../../context/userContext';
 const FormLogin = () => {
     const { loginUser } = useContext(UserContext);
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit } = useForm();
 
     return (
         <FormLoginStyled onSubmit={handleSubmit(loginUser)}>
