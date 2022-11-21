@@ -113,6 +113,15 @@ export const Container = styled.div`
         width: 0px;
     }
 
+    .pix {
+        ::before {
+            content: none;
+        }
+        margin: 0;
+        font-weight: 600;
+        font-size: 10px;
+    }
+
     @media (min-width: 768px) {
         padding: 38px 21px;
         max-width: 587px;
@@ -128,6 +137,10 @@ export const Container = styled.div`
                 width: 34px;
                 height: 8px;
             }
+        }
+
+        .pix {
+            font-size: 18px;
         }
 
         button,

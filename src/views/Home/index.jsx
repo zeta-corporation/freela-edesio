@@ -16,6 +16,7 @@ const Home = () => {
                 <p>Telefone: {user.tel}</p>
                 <p>Status: {user.status}</p>
                 <div className="comprovante">
+                    <p className="pix">Chave pix (celular): 81983075243</p>
                     <label>
                         Inserir Comprovante <span>&#x21D1;</span>
                         <input
